@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import StockRow from './components/StockRow';
-
-const token = 'sk_dc95d97ef48e41858d36653e75cbc720';
+import { getTickerData } from './service/api';
 
 const App = () => {
-	const url = 'https://cloud.iexapis.com/stable/stock/wmt/intraday-prices?chartLast=1&token=' + token;
-	var prices;
-	//const data = fetch(url)
-	//	.then((response) => response.json())
-	//	.then((data) => (prices = data));
+	const [stocks, setStocks] = useState([]);
+
+	useEffect(() => {
+		getTickerData().then(setStocks);
+		console.log(stocks);
+	}, []);
+
 	return (
 		<div className="App">
 			<div className="container">
@@ -23,10 +24,10 @@ const App = () => {
 						</tr>
 					</thead>
 					<tbody>
-						<StockRow ticker="wmt" />
-						<StockRow ticker="aapl" />
-						<StockRow ticker="msft" />
-						<StockRow ticker="tsla" />
+						<StockRow stocks="wmt" />
+						<StockRow stocks="aapl" />
+						<StockRow stocks="msft" />
+						<StockRow stocks={stocks} />
 					</tbody>
 				</table>
 			</div>
