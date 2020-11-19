@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-const StockRow = ({ stocks }) => {
+const StockRow = ({ ticker, price, date, time }) => {
 	return (
 		<tr>
-			<td>{stocks}</td>
-			<td>{stocks}</td>
-			<td>{stocks}</td>
-			<td>{stocks}</td>
+			<td>{ticker}</td>
+			<td>{price}</td>
+			<td>{date}</td>
+			<td>{time}</td>
 		</tr>
 	);
 };

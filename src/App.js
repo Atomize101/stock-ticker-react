@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import StockRow from './components/StockRow';
-import { getTickerData } from './service/api';
+import { getTickerData } from './service/api.js';
 
 const App = () => {
 	const [stocks, setStocks] = useState([]);
 
 	useEffect(() => {
 		getTickerData().then(setStocks);
-		console.log(stocks);
+		console.log(stocks[0]);
 	}, []);
 
 	return (
@@ -24,10 +24,10 @@ const App = () => {
 						</tr>
 					</thead>
 					<tbody>
-						<StockRow stocks="wmt" />
-						<StockRow stocks="aapl" />
-						<StockRow stocks="msft" />
-						<StockRow stocks={stocks} />
+						<StockRow ticker="wmt" price={stocks[0].high} date={stocks[0].date} time={stocks[0].label} />
+						<StockRow ticker="aapl" price={stocks[0].high} date={stocks[0].date} time={stocks[0].label} />
+						<StockRow ticker="msft" price={stocks[0].high} date={stocks[0].date} time={stocks[0].label} />
+						<StockRow ticker="wmt" price={stocks[0].high} date={stocks[0].date} time={stocks[0].label} />
 					</tbody>
 				</table>
 			</div>
